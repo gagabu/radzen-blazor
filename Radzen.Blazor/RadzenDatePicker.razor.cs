@@ -496,7 +496,7 @@ namespace Radzen.Blazor
 
             if (DateTimeValue != newValue && (newValue != null || nullable))
             {
-                DateTimeValue = newValue;
+                DateTimeValue = newValue.HasValue ? DateTime.SpecifyKind(newValue.Value, Kind) : newValue;
                 if ((typeof(TValue) == typeof(DateTimeOffset) || typeof(TValue) == typeof(DateTimeOffset?)) && Value != null)
                 {
                     DateTimeOffset? offset = DateTime.SpecifyKind((DateTime)Value, DateTimeKind.Utc);
